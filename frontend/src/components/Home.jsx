@@ -3,6 +3,7 @@ import React from 'react'
 import Navbar from './shared/Navbar'
 import HeroSection from './HeroSection'
 import CategoryCarousel from './CategoryCarousel'
+import LatestJobs from './latestJobs'
 
 const Home = () => {
   return (
@@ -10,7 +11,7 @@ const Home = () => {
         <Navbar/>
         <HeroSection/>
         <CategoryCarousel/>
-        <latestJobs/>
+        <LatestJobs/>
         {/* <Footer/> */}
     </div>
   )
