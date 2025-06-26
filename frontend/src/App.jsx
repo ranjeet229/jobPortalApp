@@ -6,7 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Home from './components/Home'
-import { Toaster } from 'sonner' 
+import { Toaster } from 'sonner'
+import Jobs from './components/Jobs'
 
 const appRouter = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const appRouter = createBrowserRouter([
     path: '/signup',
     element: <Signup />
   },
+  {
+    path: '/jobs',
+    element: <Jobs />
+  }
 ])
 
 function App() {
@@ -29,7 +34,7 @@ function App() {
   return (
     <>
       <RouterProvider router={appRouter} />
-      <Toaster position="top-center" richColors /> 
+      <Toaster position="top-center" richColors />
     </>
   )
 }
