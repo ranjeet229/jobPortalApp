@@ -8,6 +8,8 @@ import Signup from './components/auth/Signup'
 import Home from './components/Home'
 import { Toaster } from 'sonner'
 import Jobs from './components/Jobs'
+import Browse from './components/Browse'
+import Profile from './components/Profile'
 
 const appRouter = createBrowserRouter([
   {
@@ -25,7 +27,16 @@ const appRouter = createBrowserRouter([
   {
     path: '/jobs',
     element: <Jobs />
-  }
+  },
+  {
+    path: '/browse',
+    element: <Browse />
+  },
+  {
+    path: '/profile',
+    element: <Profile/>
+  },
+
 ])
 
 function App() {
