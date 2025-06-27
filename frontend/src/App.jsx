@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import Navbar from './components/shared/Navbar'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Login from './components/auth/Login'
@@ -10,6 +9,7 @@ import { Toaster } from 'sonner'
 import Jobs from './components/Jobs'
 import Browse from './components/Browse'
 import Profile from './components/Profile'
+import JobDescription from './components/JobDescription'
 
 const appRouter = createBrowserRouter([
   {
@@ -29,12 +29,16 @@ const appRouter = createBrowserRouter([
     element: <Jobs />
   },
   {
+    path: '/description/:id',
+    element: <JobDescription />
+  },
+  {
     path: '/browse',
     element: <Browse />
   },
   {
     path: '/profile',
-    element: <Profile/>
+    element: <Profile />
   },
 
 ])
