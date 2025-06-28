@@ -11,7 +11,8 @@ import UpdateProfileDialog from './UpdateProfileDialog'
 import { useSelector } from 'react-redux'
 
 
-const isResume = true;
+const isResume = !!user?.profile?.resume;
+
 
 const Profile = () => {
     const [open, setOpen] = useState(false);
@@ -55,7 +56,7 @@ const Profile = () => {
                 <div className='grid w-full max-w-sm items-center gap-1.5'>
                     <Label className="text-md font-bold">Resume</Label>
                     {
-                        isResume ? <a target='blank' href='https://google.com' className='text-blue-500 w-full hover:underline cursor-pointer'>ranjeet</a> : <span>NA</span>
+                        isResume ? <a target='blank' href={user?.profile?.resume} className='text-blue-500 w-full hover:underline cursor-pointer'>{user?.profile?.resumeOriginalName}</a> : <span>NA</span>
                     }
                 </div>
             </div>
