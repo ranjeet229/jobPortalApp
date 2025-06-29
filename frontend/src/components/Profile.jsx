@@ -11,7 +11,7 @@ import UpdateProfileDialog from './UpdateProfileDialog'
 import { useSelector } from 'react-redux'
 
 
-const isResume = !!user?.profile?.resume;
+const isResume = true;
 
 
 const Profile = () => {
@@ -25,7 +25,7 @@ const Profile = () => {
 
                     <div className='flex items-center gap-4'>
                         <Avatar className="h-24 w-24">
-                            <AvatarImage src="https://www.thepixelfreak.co.uk/wp-content/uploads/2019/05/Entwined-M-Logo.png" alt="profile" />
+                            <AvatarImage src={user?.profile?.profilePhoto} alt="profile" />
                         </Avatar>
                         <div>
 
