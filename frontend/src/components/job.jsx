@@ -6,7 +6,7 @@ import { Avatar, AvatarImage } from './ui/avatar'
 import { Badge } from './ui/badge'
 import { useNavigate } from 'react-router-dom'
 
-const Job = () => {
+const Job = ({job}) => {
     const navigate = useNavigate();
     const jobsId = "agargdgasdgads";
     return (
@@ -24,21 +24,21 @@ const Job = () => {
                     </Avatar>
                 </Button>
                 <div>
-                    <h1 className='text-md font-semibold text-gray-800'>Company Name</h1>
+                    <h1 className='text-md font-semibold text-gray-800'>{job?.company?.name}</h1>
                     <p className='text-sm text-gray-600'>India</p>
                 </div>
             </div>
             <div>
-                <h1 className='text-md font-semibold text-gray-800'>Title</h1>
-                <p className='text-sm text-gray-600'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, ad nostrum eligendi aliquam laboriosam pariatur! Veritatis voluptates expedita laboriosam officia!</p>
+                <h1 className='text-md font-semibold text-gray-800'>{job?.title}</h1>
+                <p className='text-sm text-gray-600'>{job?.description}</p>
             </div>
             <div className='flex items-center gap-2 mt-4'>
-                <Badge className={'text-blue-700 font-bold'} variant="ghost">12 Positions</Badge>
-                <Badge className={'text-[#F83002] font-bold'} variant="ghost">Part Time</Badge>
-                <Badge className={'text-[#7209b7] font-bold'} variant="ghost">24LPA</Badge>
+                <Badge className={'text-blue-700 font-bold'} variant="ghost">{job?.position} Positions</Badge>
+                <Badge className={'text-[#F83002] font-bold'} variant="ghost">{job?.jobType}</Badge>
+                <Badge className={'text-[#7209b7] font-bold'} variant="ghost">{job?.salary} LPA</Badge>
             </div>
             <div className='flex items-center gap-4 mt-4'>
-                <Button onClick={() => navigate(`/description/${jobsId}`)} variant="outline">Details</Button>
+                <Button onClick={() => navigate(`/description/${job?._id}`)} variant="outline">Details</Button>
                 <Button className="bg-[#7209b7]">Save For Later</Button>
             </div>
         </div>
