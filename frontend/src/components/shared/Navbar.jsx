@@ -12,14 +12,14 @@ import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
 
 const Navbar = () => {
-    const {user} =useSelector(store=>store.auth);
+    const { user } = useSelector(store => store.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const logoutHandler = async ()=>{
+    const logoutHandler = async () => {
         try {
-            const res = await axios.get(`${USER_API_END_POINT}/logout`,{withCredentials:true});
-            if(res.data.success){
+            const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
+            if (res.data.success) {
                 dispatch(setUser(null));
                 navigate("/");
                 toast.success(res.data.message);
@@ -41,9 +41,20 @@ const Navbar = () => {
                 <div className='flex items-center gap-6'>
                     {/* Navigation Links */}
                     <ul className='flex items-center gap-5 text-sm font-medium text-gray-700'>
-                        <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/">Home</Link></li>
-                        <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/jobs">Jobs</Link></li>
-                        <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/browse">Browse</Link></li>
+                        {
+                            user && user.role === 'recruiter' ? (
+                                <>
+                                    <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/admin/companies">Companies</Link></li>
+                                    <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/admin/jobs">Jobs</Link></li>
+                                </>
+                            ) : (
+                                <>
+                                    <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/">Home</Link></li>
+                                    <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/jobs">Jobs</Link></li>
+                                    <li className='cursor-pointer hover:text-blue-500 transition'><Link to="/browse">Browse</Link></li>
+                                </>
+                            )
+                        }
                     </ul>
                     {
                         !user ? (
@@ -89,11 +100,20 @@ const Navbar = () => {
 
                                     {/* Options */}
                                     <div className='flex flex-col gap-2 text-sm text-gray-700'>
-                                        <Button variant="ghost" className="flex items-center gap-2 justify-start text-gray-600 hover:text-black">
-                                            <User2 size={18} />
-                                            <Link to="/profile">View Profile</Link>
-                                        </Button>
-                                        <Button onClick={logoutHandler} variant="ghost" className="flex items-center gap-2 justify-start text-gray-600 hover:text-black">
+                                        {user?.role === 'student' && (
+                                            <Button
+                                                variant="ghost"
+                                                className="flex items-center gap-2 justify-start text-gray-600 hover:text-black"
+                                            >
+                                                <User2 size={18} />
+                                                <Link to="/profile">View Profile</Link>
+                                            </Button>
+                                        )}
+                                        <Button
+                                            onClick={logoutHandler}
+                                            variant="ghost"
+                                            className="flex items-center gap-2 justify-start text-gray-600 hover:text-black"
+                                        >
                                             <LogOut size={18} />
                                             Logout
                                         </Button>
