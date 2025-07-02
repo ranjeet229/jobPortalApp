@@ -21,7 +21,7 @@ const Signup = () => {
         role: "",
         file: ""
     });
-    const {loading} =useSelector(store=>store.auth);
+    const { loading } = useSelector(store => store.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -31,6 +31,7 @@ const Signup = () => {
     const changeFileHandler = (e) => {
         setInput({ ...input, file: e.target.files?.[0] });
     }
+    
     const submitHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -57,7 +58,7 @@ const Signup = () => {
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
-        }finally{
+        } finally {
             dispatch(setLoading(false));
         }
     }
