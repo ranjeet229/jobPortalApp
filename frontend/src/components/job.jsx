@@ -27,7 +27,7 @@ const Job = ({job}) => {
 
                 <Button className="p-6" variant="outline" size="icon">
                     <Avatar>
-                        <AvatarImage src="https://www.thepixelfreak.co.uk/wp-content/uploads/2019/05/Entwined-M-Logo.png" />
+                        <AvatarImage src= {job?.company?.logo} />
                     </Avatar>
                 </Button>
                 <div>
