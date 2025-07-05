@@ -68,7 +68,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     };
 
     return (
-        <Dialog open={open}>
+        <Dialog open={open} onOpenChnage={setOpen}>
             <DialogContent className="sm:max-w-[425px]" onInteractOutside={() => setOpen(false)}>
                 <DialogHeader>
                     <DialogTitle>Update Profile</DialogTitle>
@@ -134,7 +134,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                 name="file"
                                 type="file"
                                 accept="application/pdf"
-                                
                                 onChange={fileChangeHandler}
                                 className="col-span-3"
                             />

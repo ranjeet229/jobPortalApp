@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../shared/Navbar';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
@@ -10,7 +10,7 @@ import axios from 'axios';
 import { USER_API_END_POINT } from '@/utils/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading, setUser } from '@/redux/authSlice';
-import store from '@/redux/store';
+
 import { Loader2 } from 'lucide-react';
 
 const Login = () => {
@@ -20,7 +20,7 @@ const Login = () => {
         password: "",
         role: "",
     });
-    const { loading } = useSelector(store => store.auth);
+    const { loading, user } = useSelector(store => store.auth);
     const dispatch = useDispatch();
 
     const changeEventHandler = (e) => {
@@ -49,7 +49,11 @@ const Login = () => {
             dispatch(setLoading(false));
         }
     };
-
+    useEffect(() =>{
+        if(user){
+            navigate("/");
+        }
+    },[])
     return (
         <div>
             <Navbar />
