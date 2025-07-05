@@ -14,7 +14,7 @@ const jobSlice = createSlice({
             state.allJobs=action.payload;
         },
         setSingleJob:(state,action)=>{
-            state.allJobs=action.payload;
+            state.singleJob=action.payload;
         },
         setAllAdminJobs:(state, action) =>{
             state.allAdminJobs=action.payload;

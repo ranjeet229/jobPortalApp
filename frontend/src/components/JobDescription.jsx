@@ -8,6 +8,7 @@ import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '@/utils/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
 
+
 const JobDescription = () => {
   const { singleJob } = useSelector(store => store.job);
   const { user } = useSelector(store => store.auth);
@@ -15,7 +16,7 @@ const JobDescription = () => {
 
   const params = useParams();
   const jobId = params.id;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
 
   const applyJobHandler = async () => {
     try {
@@ -78,7 +79,7 @@ const JobDescription = () => {
         <h1 className='font-bold my-1'>Role: <span className='pl-4 font-normal text-gray-800'>{singleJob?.title}</span></h1>
         <h1 className='font-bold my-1'>Location: <span className='pl-4 font-normal text-gray-800'>{singleJob?.location}</span></h1>
         <h1 className='font-bold my-1'>Description: <span className='pl-4 font-normal text-gray-800'>{singleJob?.description}</span></h1>
-        <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal text-gray-800'>{singleJob?.experience} yrs</span></h1>
+        <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal text-gray-800'>{singleJob?.experienceLevel} yrs</span></h1>
         <h1 className='font-bold my-1'>Salary: <span className='pl-4 font-normal text-gray-800'>{singleJob?.salary} LPA</span></h1>
         <h1 className='font-bold my-1'>Total Applications: <span className='pl-4 font-normal text-gray-800'>{singleJob?.applications?.length}</span></h1>
         <h1 className='font-bold my-1'>Posted Date: <span className='pl-4 font-normal text-gray-800'>{singleJob?.createdAt?.split("T")[0]}</span></h1>
