@@ -21,8 +21,7 @@ export const registerCompany = async (req, res) => {
             });
         }
 
-        // Log the user ID to debug
-        console.log("User ID from req.id:", req.id);
+        
 
         const company = await Company.create({
             name: companyName,
