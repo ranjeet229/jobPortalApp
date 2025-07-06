@@ -50,8 +50,8 @@ const CompanyCreate = () => {
                     onChange={(e) => setCompanyName(e.target.value)}
                 />
                 <div className='flex items-center gap-2 my-10'>
-                    <Button variant="outline" onClick={() => navigate("https://jobportal-backend-spf8.onrender.com/admin/companies")}>Cancel</Button>
-                    <Button onClick={registerNewCompany}>Continue</Button>
+                    <Button variant="outline" onClick={() => navigate("/admin/companies")}>Cancel</Button>
+                    <Button onClick={registerNewCompany} className="cursor-pointer">Continue</Button>
                 </div>
             </div>
         </div>
