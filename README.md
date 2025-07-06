@@ -42,4 +42,11 @@ A powerful and responsive Job Portal platform where **Recruiters** can post jobs
 ---
 ![image alt](https://github.com/ranjeet229/jobPortalApp/blob/a03efebdc6b5e60b84ecf0717dae26e9a6edfd33/Screenshot%20(33).png
 )
+![image_alt](https://github.com/ranjeet229/jobPortalApp/blob/a03efebdc6b5e60b84ecf0717dae26e9a6edfd33/Screenshot%20(34).png
+)
+![image_alt](https://github.com/ranjeet229/jobPortalApp/blob/a03efebdc6b5e60b84ecf0717dae26e9a6edfd33/Screenshot%20(36).png
+)
+![image_alt](https://github.com/ranjeet229/jobPortalApp/blob/a03efebdc6b5e60b84ecf0717dae26e9a6edfd33/Screenshot%20(40).png)
+![image_alt](https://github.com/ranjeet229/jobPortalApp/blob/a03efebdc6b5e60b84ecf0717dae26e9a6edfd33/Screenshot%20(41).png)
+
 
