@@ -3,4 +3,3 @@ export const JOB_API_END_POINT ="https://jobportalapp-backend.onrender.com/api/v
 export const APPLICATION_API_END_POINT ="https://jobportalapp-backend.onrender.com/api/v1/application";
 export const COMPANY_API_END_POINT ="https://jobportalapp-backend.onrender.com/api/v1/company";
 
-
