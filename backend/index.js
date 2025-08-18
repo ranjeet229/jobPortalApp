@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:5173", // local dev
-  "https://job-portal-web-iota.vercel.app", 
+  "https://jobportalweb-frontend.onrender.com", 
 ];
 
 const corsOptions = {
