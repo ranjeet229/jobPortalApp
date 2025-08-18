@@ -112,7 +112,7 @@ const Navbar = () => {
                                         <Button
                                             onClick={logoutHandler}
                                             variant="ghost"
-                                            className="flex items-center gap-2 justify-start text-gray-600 hover:text-black"
+                                            className=" cursor-pointer flex items-center gap-2 justify-start text-gray-600 hover:text-black"
                                         >
                                             <LogOut size={18} />
                                             Logout
