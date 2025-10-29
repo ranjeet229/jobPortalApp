@@ -4,7 +4,7 @@ A powerful and responsive Job Portal platform where **Recruiters** can post jobs
 
 ---
 ##Deploy Link:- 
-https://job-portal-web-iota.vercel.app/
+https://job-portal-rk-eight.vercel.app
 
 ## 🚀 Features
 
