@@ -70,7 +70,7 @@ export const login = async (req, res) => {
       });
     }
 
-    password = String(password); // Ensure password is string
+    password = String(password); 
 
     let user = await User.findOne({ email });
     if (!user) {
@@ -175,7 +175,6 @@ export const updateProfile = async (req, res) => {
       }
     }
 
-    // Upload new file only if provided
     let cloudResponse;
     if (req.file) {
       const fileUri = getDataUri(req.file);

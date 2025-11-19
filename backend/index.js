@@ -18,8 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const allowedOrigins = [
-  "https://job-portal-rk-eight.vercel.app", 
-  "http://localhost:5173" // for local development
+  "http://localhost:5173"
 ];
 
 const corsOptions = {

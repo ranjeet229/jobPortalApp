@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 
-const companyArray = [];
-
 const PostJob = () => {
     const [input, setInput] = useState({
         title: "",
@@ -25,12 +23,34 @@ const PostJob = () => {
         position: 0,
         companyId: ""
     });
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(""); // experience validation error
+
+    const navigate = useNavigate();
     const { companies } = useSelector(store => store.company);
+
     const changeEventHandler = (e) => {
-        setInput({ ...input, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        // Validation for Experience
+        if (name === "experience") {
+            // Allow only digits
+            if (!/^\d*$/.test(value)) {
+                setError("Experience must be a numeric value.");
+                return;
+            }
+
+            // Range validation
+            if (value !== "" && (value < 0 || value > 100)) {
+                setError("Experience must be between 0 and 100.");
+                return;
+            }
+
+            setError(""); // Clear error
+        }
+
+        setInput({ ...input, [name]: value });
     };
 
     const selectChangeHandler = (value) => {
@@ -40,6 +60,18 @@ const PostJob = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+
+        // Final validation before submit
+        if (error) {
+            toast.error("Please fix validation errors before submitting.");
+            return;
+        }
+
+        if (input.experience === "" || input.experience < 0 || input.experience > 100) {
+            toast.error("Experience must be a numeric value.");
+            return;
+        }
+
         try {
             setLoading(true);
             const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
@@ -48,17 +80,18 @@ const PostJob = () => {
                 },
                 withCredentials: true
             });
+
             if (res.data.success) {
                 toast.success(res.data.message);
                 navigate("/admin/jobs");
             }
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Something went wrong");
         } finally {
             setLoading(false);
         }
+    };
 
-    }
     return (
         <div>
             <Navbar />
@@ -72,9 +105,10 @@ const PostJob = () => {
                                 name="title"
                                 value={input.title}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
                         </div>
+
                         <div>
                             <Label>Description</Label>
                             <Input
@@ -82,9 +116,10 @@ const PostJob = () => {
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
                         </div>
+
                         <div>
                             <Label>Requirements</Label>
                             <Input
@@ -92,9 +127,10 @@ const PostJob = () => {
                                 name="requirements"
                                 value={input.requirements}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
                         </div>
+
                         <div>
                             <Label>Salary</Label>
                             <Input
@@ -102,9 +138,10 @@ const PostJob = () => {
                                 name="salary"
                                 value={input.salary}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
                         </div>
+
                         <div>
                             <Label>Location</Label>
                             <Input
@@ -112,19 +149,21 @@ const PostJob = () => {
                                 name="location"
                                 value={input.location}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
                         </div>
+
                         <div>
-                            <Label>JobType</Label>
+                            <Label>Job Type</Label>
                             <Input
                                 type="text"
                                 name="jobType"
                                 value={input.jobType}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
                         </div>
+
                         <div>
                             <Label>Experience Level</Label>
                             <Input
@@ -132,9 +171,11 @@ const PostJob = () => {
                                 name="experience"
                                 value={input.experience}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
+                            {error && <p className="text-red-600 text-sm">{error}</p>}
                         </div>
+
                         <div>
                             <Label>No. of Position</Label>
                             <Input
@@ -142,38 +183,41 @@ const PostJob = () => {
                                 name="position"
                                 value={input.position}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="my-1"
                             />
                         </div>
-                        {
-                            companies.length > 0 && (
-                                <Select onValueChange={selectChangeHandler}>
-                                    <SelectTrigger className="w-[180px]">
-                                        <SelectValue placeholder="Select a company" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            {
-                                                companies.map((company) => {
-                                                    return (
-                                                        <SelectItem value={company?.name?.toLowerCase()}>{company.name}</SelectItem>
-                                                    )
-                                                })
-                                            }
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
 
-                            )
-                        }
+                        {companies.length > 0 && (
+                            <Select onValueChange={selectChangeHandler}>
+                                <SelectTrigger className="w-[180px]">
+                                    <SelectValue placeholder="Select a company" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        {companies.map((company) => (
+                                            <SelectItem key={company._id} value={company?.name?.toLowerCase()}>
+                                                {company.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        )}
                     </div>
-            
-                    {
-                        loading ? <Button className='w-full my-4'> <Loader2 className='mr-2 h-4 animate-spin' />Please wait</Button> : <Button type="submit" className="cursor-pointer w-full my-4">Post New Job</Button>
-                    }
-                    {
-                        companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center my-3'>*Please register a company first, before posting a jobs</p>
-                    }
+
+                    {loading ? (
+                        <Button className="w-full my-4"> 
+                            <Loader2 className='mr-2 h-4 animate-spin' />Please wait
+                        </Button>
+                    ) : (
+                        <Button type="submit" className="w-full my-4">Post New Job</Button>
+                    )}
+
+                    {companies.length === 0 && (
+                        <p className='text-xs text-red-600 font-bold text-center my-3'>
+                            *Please register a company first, before posting a job
+                        </p>
+                    )}
                 </form>
             </div>
         </div>
