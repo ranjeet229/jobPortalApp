@@ -3,8 +3,7 @@
 A powerful and responsive Job Portal platform where **Recruiters** can post jobs and manage applicants, while **Job Seekers** can browse, search, and apply for jobs. This project is built using the **MERN Stack** with modern UI powered by **ReactJS + Vite** and **TailwindCSS**.
 
 ---
-##Deploy Link:- 
-https://job-portal-rk-eight.vercel.app
+
 
 ## 🚀 Features
 
